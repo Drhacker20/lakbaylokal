@@ -1,0 +1,106 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <ion-tab-button tab="home" routerLink="/tabs/home">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+      <div class="active-indicator"></div>
+    </ion-tab-button>
+
+    <ion-tab-button tab="favorites" routerLink="/tabs/favorites">
+      <ion-icon name="heart-outline"></ion-icon>
+      <ion-label>Favorites</ion-label>
+      <div class="active-indicator"></div>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" routerLink="/tabs/profile">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Profile</ion-label>
+      <div class="active-indicator"></div>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
+
+<style>
+.custom-tab-bar {
+  --background: rgb(31, 166, 122); /* semi-transparent green glass */
+  --color: #ffffff;       /* inactive icons/labels white */
+  --color-selected: #ffffff; /* active icons/labels white */
+  height: 70px;
+  border-radius: 35px; /* capsule shape */
+  margin: 0 16px 16px 16px; /* floating effect with bottom margin */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* floating shadow */
+  padding-bottom: 0;
+  padding-top: 8px;
+  z-index: 10;
+  overflow: visible;
+
+  ion-icon {
+    font-size: 26px;
+    margin-bottom: 4px;
+    color: #ffffff;
+  }
+
+  ion-label {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 2px;
+    color: #ffffff;
+  }
+
+  ion-tab-button {
+    position: relative;
+
+    .active-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60px;
+      height: 4px;
+      background: #ffffff; /* white indicator */
+      border-radius: 10px 10px 0 0;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 -4px 15px rgba(255,255,255,0.3);
+    }
+
+    &.tab-selected {
+      ion-icon,
+      ion-label {
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .active-indicator {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.6s;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    &.ion-focused::after,
+    &:active::after {
+      opacity: 1;
+      transform: scale(2.5);
+    }
+  }
+}
+</style>

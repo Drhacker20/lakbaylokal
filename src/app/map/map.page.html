@@ -1,0 +1,188 @@
+<!-- REMOVE HEADER COMPLETELY SA UI PERO KEEP IT FOR IONIC STRUCTURE -->
+<ion-header class="no-header"></ion-header>
+
+<ion-content fullscreen class="detail-page" scroll-y="false">
+
+  <!-- FLOATING BACK BUTTON -->
+  <button class="floating-back" (click)="goBack()">
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+
+  <!-- FULL MAP HERO -->
+  <div class="hero-wrapper">
+    <div id="map" class="hero-map"></div>
+  </div>
+
+  <!-- BOTTOM CARD -->
+  <div class="bottom-card">
+    <div class="drag-line"></div>
+
+    <h1 class="title">{{ place?.name }}</h1>
+
+    <div class="info-row">
+      <div class="location">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>{{ place?.address }}</span>
+      </div>
+
+      <div class="rating">
+        <ion-icon name="star"></ion-icon>
+        <span>{{ place?.rating }}</span>
+      </div>
+    </div>
+
+    <p class="description">
+      {{ truncatedDesc }}
+      <span 
+        *ngIf="place && place.description && place.description.length > 180"
+        class="see-more" 
+        (click)="showFull = !showFull"
+      >
+        {{ showFull ? 'Show less' : '...See More' }}
+      </span>
+    </p>
+
+  </div>
+
+</ion-content>
+
+
+
+
+<style>
+/* REMOVE HEADER SPACE COMPLETELY */
+.no-header,
+.header-clear {
+  --background: transparent !important;
+  --min-height: 0px !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* REMOVE automatic toolbar spacing */
+ion-toolbar {
+  --padding-top: 0 !important;
+  --padding-bottom: 0 !important;
+}
+
+/* PAGE BACKGROUND */
+.detail-page {
+  --background: transparent;
+}
+
+/* FULLSCREEN MAP AT THE TOP */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 470px; /* pwede mo baguhin */
+  margin: 0;
+  padding: 0;
+}
+
+.hero-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* FLOATING BACK BUTTON */
+.floating-back {
+  position: absolute;
+  top: 32px;
+  left: 20px;
+  z-index: 9999;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-back ion-icon {
+  font-size: 26px;
+  color: white;
+}
+
+/* BOTTOM CARD */
+.bottom-card {
+  position: relative;
+  z-index: 5;
+  background: #fff;
+  margin-top: -40px;
+  padding: 32px 24px 50px;
+  border-top-left-radius: 34px;
+  border-top-right-radius: 34px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
+  min-height: 55vh;
+}
+
+.drag-line {
+  width: 55px;
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 10px;
+  margin: 0 auto 22px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #181818;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 15px;
+}
+
+.rating {
+  background: #fff8c7;
+  color: #f6a400;
+  padding: 7px 14px;
+  border-radius: 22px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.description {
+  color: #555;
+  line-height: 1.7;
+  font-size: 15.5px;
+  margin: 16px 0 26px;
+}
+
+.see-more {
+  background: linear-gradient(135deg, #1fa67a, #28d39f);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+
+</style>

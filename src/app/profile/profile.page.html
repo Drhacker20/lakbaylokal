@@ -1,0 +1,250 @@
+<ion-content class="profile-page" [fullscreen]="true">
+
+  <style>
+    /* PAGE BACKGROUND */
+    .profile-page {
+      --background: #e9f6ee;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow-y: auto;
+    }
+
+   .curved-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 43%;
+  background: linear-gradient(135deg, #1fa67a, #28d39f);
+  border-bottom-left-radius: 80% 30%;
+  border-bottom-right-radius: 80% 30%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  z-index: 0;
+}
+
+
+    /* TOP SECTION */
+    .top-section {
+      text-align: center;
+      margin-top: 80px;
+      position: relative;
+      z-index: 99;
+    }
+
+    /* AVATAR */
+    .avatar-wrapper {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      backdrop-filter: blur(18px);
+      background: rgba(255,255,255,0.35);
+      border: 3px solid rgba(255,255,255,0.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .avatar-wrapper img {
+      width: 85%;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    /* edit avatar */
+    .edit-avatar {
+      width: 36px;
+      height: 36px;
+      background: #1fa67a;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.25);
+      border: 3px solid white;
+      z-index: 99;
+    }
+
+    .edit-avatar ion-icon {
+      color: white;
+      font-size: 18px;
+    }
+
+    .user-name {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* SECTIONS */
+    .section-title {
+      font-size: 14px;
+      margin: 25px 22px 10px 22px;
+      font-weight: 600;
+      color: #4e4e4e;
+    }
+
+    /* GLASS INFO BOX */
+    .info-box {
+      width: 90%;
+      margin: auto;
+      border-radius: 20px;
+      padding: 5px 0;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0px 4px 14px rgba(0,0,0,0.12);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .left-side {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .info-icon {
+      font-size: 20px;
+      color: #1fa67a;
+    }
+
+    .info-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2f863d;
+    }
+
+    .info-value {
+      font-size: 13px;
+      color: #2f863d;
+    }
+
+    .edit-field {
+      font-size: 18px;
+      color: #1fa67a;
+    }
+
+    /* LOGOUT BTN */
+    .logout-btn {
+      width: 48%;
+      margin: 45px auto;
+      padding: 14px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 28px;
+      background: linear-gradient(45deg, #ff5f6d, #ff4350);
+      box-shadow: 0 5px 12px rgba(255,0,0,0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logout-btn ion-icon {
+      font-size: 18px;
+      color: white;
+    }
+
+  </style>
+
+  <!-- CURVED BACKGROUND -->
+  <div class="curved-bg"></div>
+
+  <input
+  type="file"
+  accept="image/*"
+  hidden
+  #fileInput
+  (change)="onImageSelected($event)"
+>
+
+  <!-- TOP -->
+  <div class="top-section">
+    <div class="avatar-wrapper" (click)="openFilePicker(fileInput)">
+      <img [src]="userImage" alt="User">
+
+      <div class="edit-avatar" (click)="openFilePicker(fileInput); $event.stopPropagation()">
+  <ion-icon name="camera-outline"></ion-icon>
+</div>
+
+    </div>
+
+    <div class="user-name" (click)="editName()">
+      {{ userName }}
+    </div>
+  </div>
+
+  <!-- PROFILE INFO -->
+  <div class="section-title">PROFILE</div>
+
+  <div class="info-box">
+
+    <div class="info-row">
+      <div class="left-side">
+        <ion-icon name="mail-outline" class="info-icon"></ion-icon>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value">{{ userEmail }}</div>
+        </div>
+      </div>
+      <ion-icon name="pencil-outline" class="edit-field" (click)="editEmail()"></ion-icon>
+    </div>
+
+    <div class="info-row">
+      <div class="left-side">
+        <ion-icon name="call-outline" class="info-icon"></ion-icon>
+        <div>
+          <div class="info-label">Phone Number</div>
+          <div class="info-value">{{ userPhone }}</div>
+        </div>
+      </div>
+      <ion-icon name="pencil-outline" class="edit-field" (click)="editPhone()"></ion-icon>
+    </div>
+
+  <div class="info-row">
+  <div class="left-side">
+    <ion-icon name="lock-closed-outline" class="info-icon"></ion-icon>
+    <div>
+      <div class="info-label">Password</div>
+      <div class="info-value">
+        {{ showPassword ? realPassword : '********' }}
+      </div>
+    </div>
+  </div>
+
+  <ion-icon
+    [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+    class="edit-field"
+    (click)="togglePassword()">
+  </ion-icon>
+</div>
+
+
+  </div>
+
+  <!-- SIGN OUT BUTTON -->
+  <div class="logout-btn" (click)="logout()">
+    <ion-icon name="log-out-outline"></ion-icon>
+    Sign Out
+  </div>
+
+</ion-content>

@@ -1,0 +1,99 @@
+<ion-content class="landing-page">
+
+  <style>
+    .landing-page {
+      --background: none;
+      background-image: url('/assets/start.png'); /* replace if needed */
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    /* App Title */
+   .app-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+
+    /* Bottom gradient overlay */
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 55%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+    }
+
+    .content-box {
+      position: absolute;
+      bottom: 40px;
+      padding: 0 26px;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 22px;
+      line-height: 1.4;
+    }
+
+    /* Custom Styled Button */
+    .sign-in-btn {
+      --background: linear-gradient(135deg, #1fa67a, #28d39f);
+      --border-radius: 18px;
+      --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      width: 75%;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin: 0 auto 12px auto;
+    }
+
+    /* Create Account */
+    .create-btn {
+      color: #ffffff;
+      font-weight: 500;
+      width: 100%;
+      text-transform: none;
+    }
+  </style>
+
+  <!-- App Title -->
+  
+
+  <div class="overlay"></div>
+
+  <div class="content-box">
+    <div class="app-title">LakbayLokal</div>
+    <h1>Explore the Heart of Gabaldon</h1>
+
+    <p>
+  Discover the hidden gems of Gabaldon, from its pristine rivers and waterfalls to historic sites and local traditions. Experience authentic adventures in the heart of Nueva Ecija.
+</p>
+
+
+    <ion-button expand="block" class="sign-in-btn" (click)="goToLogin()">
+      Sign in
+    </ion-button>
+
+    <ion-button fill="clear" class="create-btn" (click)="goToRegister()">
+      Create an account
+    </ion-button>
+  </div>
+
+</ion-content>

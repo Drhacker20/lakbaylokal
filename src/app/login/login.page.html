@@ -1,0 +1,210 @@
+<ion-content class="login-screen" fullscreen>
+
+  <!-- BACK BUTTON -->
+  <ion-icon name="arrow-back" class="back-btn" (click)="goBack()"></ion-icon>
+
+  <!-- TOP RIGHT DECOR -->
+  <div class="decor top-right"></div>
+
+  <!-- PAGE CONTENT -->
+  <div class="container">
+
+    <h1 class="title">Welcome Back!</h1>
+    <p class="subtitle">Log in to your existing account</p>
+
+    <form (ngSubmit)="signIn()" #loginForm="ngForm">
+
+      <!-- EMAIL -->
+      <div class="input-box">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-input
+          type="email"
+          placeholder="Email"
+          name="email"
+          [(ngModel)]="email"
+          required
+        ></ion-input>
+      </div>
+
+      <!-- PASSWORD -->
+<div class="input-box">
+  <ion-icon name="lock-closed-outline"></ion-icon>
+  <ion-input
+    [type]="showPassword ? 'text' : 'password'"
+    placeholder="Password"
+    name="password"
+    [(ngModel)]="password"
+    required
+  ></ion-input>
+  <ion-icon
+    [name]="showPassword ? 'eye-off' : 'eye'"
+    class="eye-icon"
+    (click)="togglePassword()"
+  ></ion-icon>
+</div>
+
+
+      <div class="forgot-row">
+        <a (click)="forgotPassword()" class="forgot">Forgot password</a>
+      </div>
+
+      <!-- SIGN IN BUTTON -->
+      <ion-button
+        expand="block"
+        type="submit"
+        class="login-btn"
+        [disabled]="!loginForm.form.valid"
+      >
+        Sign in
+      </ion-button>
+
+      <!-- SIGNUP TEXT -->
+      <div class="signup-row">
+        <span>No account?</span>
+        <a class="signup-link" (click)="goToSignup()">Create New</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- BOTTOM LEFT DECOR -->
+  <div class="decor bottom-left"></div>
+
+  <style>
+    * {
+      font-family: "Inter", sans-serif;
+    }
+
+    ion-content {
+      --background: #ffffff;
+    }
+
+    /* BACK BUTTON (SAME AS SIGNUP PAGE) */
+    .back-btn {
+      position: absolute;
+      top: 26px;
+      left: 20px;
+      font-size: 26px;
+      z-index: 20;
+      color: #1fa67a;
+    }
+
+    
+
+    /* MATCH SPACING WITH SIGNUP PAGE */
+    .container {
+      padding: 80px 25px 20px 25px;
+    }
+
+    /* MATCHED "Let’s Get Started!" STYLE */
+    .title {
+      color: #1fa67a;
+      text-align: left;
+      font-size: 30px;
+      font-weight: 800;
+    }
+   .eye-icon {
+  --ionicon-width: 32x;   /* width of the icon */
+  --ionicon-height: 32px;  /* height of the icon */
+  color: #6b6b6b;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+
+
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    /* INPUT BOXES – MATCH LOOK OF SIGNUP FIELDS */
+    .input-box {
+      display: flex;
+      align-items: center;
+      background: #f3f3f3;
+      border-radius: 20px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      width: 95%;
+     margin: 0 auto 16px auto; 
+      height: 54px;
+    }
+
+    .input-box ion-icon {
+      font-size: 18px;
+      margin-right: 10px;
+      color: #555;
+    }
+
+    ion-input {
+      font-size: 15px;
+      --padding-start: 0;
+    }
+
+    /* FORGOT PASSWORD */
+    .forgot-row {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .forgot {
+      font-size: 13px;
+      color: #444;
+      text-decoration: none;
+    }
+
+    /* SIGN IN BUTTON – SAME STYLE AS SIGNUP BUTTON */
+    .login-btn {
+      --background: linear-gradient(135deg, #1fa67a, #28d39f);
+      --border-radius: 28px;
+      height: 46px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 8px;
+      width: 75%;
+      margin: 0 auto 16px auto; 
+      
+    }
+
+    /* SIGNUP TEXT */
+    .signup-row {
+      margin-top: 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .signup-link {
+      color: #1fa67a;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* MATCH SIGNUP PAGE DECOR CIRCLES */
+    .decor {
+      position: absolute;
+      background: linear-gradient(135deg, #1fa67a, #28d39f);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .top-right {
+      width: 260px;
+      height: 260px;
+      top: -110px;
+      right: -110px;
+    }
+
+    .bottom-left {
+      width: 310px;
+      height: 310px;
+      bottom: -150px;
+      left: -150px;
+    }
+  </style>
+
+</ion-content>

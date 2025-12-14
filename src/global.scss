@@ -1,0 +1,114 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/* ============================
+   GLOBAL ALERT (ion-alert) STYLE
+   ============================ */
+
+ion-alert.custom-alert {
+  --backdrop-opacity: 0.35;
+}
+
+ion-alert.custom-alert .alert-wrapper {
+  border-radius: 22px !important;
+  background: #ffffff;
+  padding-bottom: 10px;
+}
+
+/* Header styling (title area) */
+ion-alert.custom-alert .alert-head {
+  background: #1fa67a;
+  padding: 16px 20px;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+ion-alert.custom-alert .alert-title {
+  color: white !important;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Description text */
+ion-alert.custom-alert .alert-message {
+  color: #333;
+  font-size: 14px;
+}
+
+/* Buttons */
+ion-alert.custom-alert .alert-button {
+  font-weight: 600;
+  border-radius: 12px;
+  margin: 6px;
+}
+
+/* Cancel button */
+ion-alert.custom-alert button.alert-button-role-cancel {
+  background: #ececec;
+  color: #333;
+}
+
+/* Confirm / Save button */
+ion-alert.custom-alert button:not(.alert-button-role-cancel) {
+  background: #1fa67a;
+  color: white;
+}
+
+
+
+/* ============================
+   LEAFLET MAP GLOBAL FIXES
+   ============================ */
+
+/* Import Leaflet CSS */
+@import "leaflet/dist/leaflet.css";
+
+/* Prevent map tiles from scattering / breaking */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  touch-action: pan-x pan-y !important;
+}
+
+/* Ensure map behaves inside Ionic scrolling */
+ion-content {
+  --overflow: hidden;
+}
+

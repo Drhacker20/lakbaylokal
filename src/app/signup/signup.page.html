@@ -1,0 +1,172 @@
+<ion-content fullscreen>
+  <!-- Back Arrow -->
+  <ion-icon name="arrow-back" class="back-btn" (click)="goBack()"></ion-icon>
+
+  <!-- Top Circle -->
+  <div class="decor top-right"></div>
+
+  <div class="page-wrap">
+    <h1 class="title">Let's get started!</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="create()">
+      <ion-list lines="none">
+
+        <!-- Username -->
+        <ion-item class="field" detail="false">
+          <ion-icon name="person" slot="start" class="field-icon"></ion-icon>
+          <ion-input placeholder="Username" formControlName="username"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
+          Username must be at least 3 characters
+        </div>
+
+        <!-- Email -->
+        <ion-item class="field" detail="false">
+          <ion-icon name="mail" slot="start" class="field-icon"></ion-icon>
+          <ion-input placeholder="Email" type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          Please enter a valid email
+        </div>
+
+        <!-- Phone -->
+        <ion-item class="field" detail="false">
+          <ion-icon name="call" slot="start" class="field-icon"></ion-icon>
+          <ion-input placeholder="Phone number" type="tel" formControlName="phone"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+          Please enter a valid phone number
+        </div>
+
+        <!-- Password -->
+        <ion-item class="field" detail="false">
+          <ion-icon name="lock-closed" slot="start" class="field-icon"></ion-icon>
+          <ion-input 
+            [type]="showPassword ? 'text' : 'password'" 
+            placeholder="Password" 
+            formControlName="password">
+          </ion-input>
+          <ion-icon 
+            [name]="showPassword ? 'eye-off' : 'eye'" 
+            slot="end" 
+            class="eye-icon" 
+            (click)="togglePassword()">
+          </ion-icon>
+        </ion-item>
+        <div class="error" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          Password must be at least 6 characters
+        </div>
+
+        <!-- Confirm Password -->
+        <ion-item class="field" detail="false">
+          <ion-icon name="lock-closed" slot="start" class="field-icon"></ion-icon>
+          <ion-input 
+            [type]="showConfirmPassword ? 'text' : 'password'" 
+            placeholder="Confirm Password" 
+            formControlName="confirmPassword">
+          </ion-input>
+          <ion-icon 
+            [name]="showConfirmPassword ? 'eye-off' : 'eye'" 
+            slot="end" 
+            class="eye-icon" 
+            (click)="toggleConfirmPassword()">
+          </ion-icon>
+        </ion-item>
+        <div class="error" *ngIf="registerForm.hasError('notMatching') && registerForm.get('confirmPassword')?.touched">
+          Passwords do not match
+        </div>
+
+      </ion-list>
+
+      <ion-button type="submit" [disabled]="registerForm.invalid" expand="block" class="create-btn">
+        Create
+      </ion-button>
+    </form>
+  </div>
+
+  <!-- Bottom Circle -->
+  <div class="decor bottom-left"></div>
+
+
+
+  <style>
+
+    ion-content {
+      --background: #ffffff;
+    }
+
+    /* Back Arrow */
+    .back-btn {
+      position: absolute;
+      top: 26px;
+      left: 20px;
+      font-size: 26px;
+      z-index: 10;
+      color: #1fa67a;
+    }
+
+    .page-wrap{
+      padding: 80px 25px 20px;
+    }
+
+    .title{
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 25px;
+      color: #1fa67a;
+    }
+
+    .field {
+      --background: #f3f3f3;
+      margin-bottom: 12px;
+      border-radius: 20px;
+      height: 54px;
+    }
+
+    .field-icon {
+      font-size: 18px;
+      color: #6b6b6b;
+    }
+
+    ion-item.field ion-input {
+      font-size: 15px;
+      color: #444;
+    }
+
+    /* Create Button */
+    .create-btn {
+      --background: linear-gradient(135deg, #1fa67a, #28d39f);
+      --border-radius: 28px;
+      height: 46px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 8px;
+      width: 75%;
+      margin: 0 auto 16px auto; 
+    }
+
+    /* Circles */
+    .decor {
+      position: absolute;
+      background: linear-gradient(135deg, #1fa67a, #28d39f);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .top-right{
+      width: 260px;
+      height: 260px;
+      top: -110px;
+      right: -110px;
+    }
+
+    .bottom-left{
+      width: 310px;
+      height: 310px;
+      bottom: -150px;
+      left: -150px;
+    }
+
+  </style>
+
+</ion-content>
